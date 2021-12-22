@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="leftSide">
+    <h2>
+      Welcome to the EDI Interface!
+    </h2>
+
+    <p>
+      Please select your facility.
+    </p>
+
+    <div class="arrow">
+      <i class="fas fa-arrow-circle-right fa-10x"></i>
+    </div>
+  </div>
+
+  <div class="rightSide">
+    <button [routerLink]="['/home']" (click)="facilityClick('TAC-AL')" class="btn-primary btn-alabama">
+      TAC-AL
+    </button>
+
+    <button [routerLink]="['/home']" (click)="facilityClick('TAC-TN')" class="btn-primary btn-tennessee">
+      TAC-TN
+    </button>
+
+    <button [routerLink]="['/home']" (click)="facilityClick('TAC-OH')" class="btn-primary btn-ohio">
+      TAC-OH
+    </button>
+
+    <button [routerLink]="['/home']" (click)="facilityClick('TAC-MS')" class="btn-primary btn-mississippi">
+      TAC-MS
+    </button>
+  </div>
+</div>

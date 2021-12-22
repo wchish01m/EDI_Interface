@@ -1,0 +1,227 @@
+body {
+  margin: 0 15px 0 15px;
+}
+
+.white-scale {
+  z-index: 11000;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background: rgb(255 255 255 / 0.70);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  animation: show .2s;
+  -webkit-animation: show .2s;
+}
+
+#loaderImg {
+  position: absolute;
+  display: none;
+  left: 42.5%;
+  top: 30%;
+  z-index: 12000;
+  animation: show .2s;
+  -webkit-animation: show .2s;
+}
+
+#loader {
+  position: absolute;
+  display: none;
+  bottom: 0;
+  z-index: 12000;
+}
+
+.title {
+  float: left;
+  text-align: center;
+}
+
+#searchBtn, #clearSearchBtn {
+  position: relative;
+  float: right;
+  width: 90px;
+  height: 36px;
+  margin-right: 15px;
+  border-radius: 5px;
+  background-color: #2587ff;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Tooltip for Searchbox */
+.tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: #2587ff;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px 5px 5px;
+  position: absolute;
+  z-index: 1001;
+  top: 130%;
+  left: 40%;
+  margin-left: -60px;
+}
+
+  .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #2587ff transparent;
+  }
+
+.search {
+  float: right;
+  position: relative;
+  display: inline-block;
+  width: 400px;
+  margin-top: 12px;
+  margin-right: 15px;
+}
+
+  .search:hover .tooltiptext {
+    visibility: visible;
+  }
+
+.searchInput {
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 10px;
+  outline: none;
+}
+
+.dataTable {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  text-align: center;
+  /*white-space: nowrap;*/
+}
+
+.headers {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #c8c8c8;
+}
+
+.grey-scale {
+  z-index: 11000;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  animation: show .2s;
+  -webkit-animation: show .2s;
+}
+
+.modal {
+  z-index: 12000;
+  padding: 15px;
+  width: 30%;
+  height: 25%;
+  position: absolute;
+  left: 35%;
+  top: 37.5%;
+  background: #fff;
+  border-radius: 10px;
+  display: none;
+  animation: show .2s;
+  -webkit-animation: show .2s;
+}
+
+.exit-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 40px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  border-radius: 5px;
+  background-color: #2587ff;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/*Animations*/
+.animated-gradient {
+  position: relative;
+  z-index: 10000;
+  width: 300px;
+  color: white;
+  border-radius: 10px;
+  padding-left: 15px;
+  background: repeating-linear-gradient(to right, #c8c8c8 0%, #2587ff 50%, #c8c8c8 100%);
+  background-size: 200% auto;
+  background-position: 0 100%;
+  animation: gradient 2s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.hideModal {
+  z-index: -1;
+  opacity: 0;
+  animation: hide .25s;
+  transform: scale(0);
+}
+
+@keyframes hide {
+  from {
+    z-index: 12000;
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    z-index: -1;
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes show {
+  from {
+    transform: scale(0);
+    opacity: 0;
+    z-index: -1;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 12000;
+  }
+}

@@ -1,0 +1,218 @@
+.bg-white {
+  background-color: #484848 !important;
+}
+
+img {
+  width: 160px;
+}
+
+.navbar {
+  padding: 0.5rem 0 0.5rem 0;
+}
+
+.navbar-brand {
+  color: white;
+  padding-left: 15px;
+}
+
+button {
+  border-radius: 5px;
+  margin-top: 15px;
+  background-color: #2587ff;
+  border: none;
+  color: white;
+  padding: 7.5px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+
+.intranet {
+  display: inline-block;
+  float: right;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 1001;
+}
+
+.dropdown-content {
+  border-radius: 5px;
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 115px;
+  border: solid 1px #e4e4e4;
+  z-index: 1;
+}
+
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    animation: slideIn 0.4s;
+    -webkit-animation: slideIn 0.4s;
+  }
+
+    .dropdown-content a:hover {
+      background-color: rgb(37 135 255 / 0.85);
+    }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  border-radius: 5px;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: rgb(37 135 255 / 0.85);
+}
+
+#al, #tn, #oh, #ms, #request {
+  border-radius: 5px;
+  background-color: #2587ff;
+  width: 110px;
+  text-align: center;
+}
+
+  #al:hover, #tn:hover, #oh:hover, #ms:hover, #request:hover {
+    background-color: rgb(37 135 255 / 0.85);
+  }
+
+#recurring {
+  border-radius: 5px;
+  background-color: #2587ff;
+  width: 90px;
+  height: 36px;
+  text-align: center;
+}
+
+  #recurring:hover {
+    background-color: rgb(37 135 255 / 0.85);
+  }
+
+#unscheduled {
+  border-radius: 5px;
+  background-color: #2587ff;
+  width: 90px;
+  height: 36px;
+  text-align: center;
+}
+
+  #unscheduled:hover {
+    background-color: rgb(37 135 255 / 0.85);
+  }
+
+
+#ehs {
+  border-radius: 5px;
+  background-color: #2587ff;
+  width: 90px;
+  height: 36px;
+  text-align: center;
+}
+
+  #ehs:hover {
+    background-color: rgb(37 135 255 / 0.85);
+  }
+
+#users {
+  border-radius: 5px;
+  background-color: #2587ff;
+  width: 90px;
+  height: 36px;
+  text-align: center;
+}
+
+  #users:hover {
+    background-color: rgb(37 135 255 / 0.85);
+  }
+
+
+#edit-user {
+  border-radius: 5px;
+  background-color: #2587ff;
+  width: 90px;
+  height: 36px;
+  text-align: center;
+}
+
+  #edit-user:hover {
+    background-color: rgb(37 135 255 / 0.85);
+  }
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 575px) {
+  button {
+    width: 350px;
+    display: block;
+  }
+
+  .login {
+    display: block;
+  }
+
+  .logout {
+    display: block;
+  }
+
+  .intranet {
+    display: block;
+    float: left;
+  }
+
+  .navbar-toggler {
+    margin-left: 35px;
+  }
+
+  .nav-item {
+    margin-left: 30px;
+  }
+
+  .dropdown {
+    margin-left: 30px;
+  }
+}

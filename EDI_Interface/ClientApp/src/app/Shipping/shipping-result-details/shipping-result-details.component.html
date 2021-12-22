@@ -1,0 +1,181 @@
+<app-nav-menu></app-nav-menu>
+<body ng-app="MyApp" ng-controller="myCtrl">
+  <div class="white-scale" id="backDrop1"></div>
+  <div id="loaderImg">
+    <img src="/assets/gg55258272.webp" alt="load bot 5000">
+    <div class="animated-gradient" id="loader">
+      Loading...
+    </div>
+  </div>
+
+  <div class="top">
+    <div class="title inline-block-child">
+      <h1>Label Audit</h1>
+    </div>
+  </div>
+
+  <input id="hideFacility" value="default" (change)="checkUrl()" hidden />
+
+  <div class="searchDiv">
+    <div>
+      <input class="searchInput"
+             type="text"
+             id="searchPartNum"
+             (keydown.enter)="search()"
+             placeholder="Please enter part number..."
+             autocomplete="off"><br>
+    </div>
+
+    <div class="productionSearch search">
+      <form class="prodSearchForm">
+
+        <input type="checkbox"
+               id="production"
+               name="prodSearch"
+               value="prodSearch"
+               (click)="enableTextInput()">
+        <label for="production">&nbsp;&nbsp;Production</label>
+
+        <input #tSerial
+               name="serialNumber"
+               id="serialNumber"
+               ng-model="serialNumber"
+               [(ngModel)]="service.SearchFields.serialNumber"
+               class="searchInput"
+               type="text"
+               (keydown.enter)="search()"
+               placeholder="Please enter topre serial..."
+               autocomplete="off"
+               disabled><br>
+
+        <input #sDate
+               name="startDate"
+               id="startDate"
+               ng-model="prodDate"
+               [(ngModel)]="service.SearchFields.prodDate"
+               type="text"
+               class="startDatePicker inline-block-child dateSelector"
+               onfocus="(this.type='date')"
+               onblur="(this.type='text')"
+               placeholder="Please select a starting date..."
+               disabled><br>
+
+        <input name="endDate"
+               type="text"
+               id="endDate"
+               class="endDatePicker inline-block-child dateSelector"
+               onfocus="(this.type='date')"
+               onblur="(this.type='text')"
+               placeholder="Please select an ending date..."
+               disabled>
+      </form>
+    </div>
+
+    <div class="shippingSearch search">
+      <form class="shippingSearchForm">
+        <input type="checkbox" id="shipping" name="shippingSearch" value="shippingSearch" (click)="enableTextInput()">
+        <label for="shipping">&nbsp;&nbsp;Shipping</label>
+
+        <input #tCode
+               name="tpCode"
+               id="tpCode"
+               ng-model="tpCode"
+               [(ngModel)]="tpCode"
+               class="searchInput"
+               type="text"
+               (keydown.enter)="search()"
+               placeholder="Please enter trading partner code..."
+               autocomplete="off"
+               disabled><br>
+
+        <input #sNum
+               name="shipperNum"
+               id="shipperNum"
+               ng-model="shipperNum"
+               [(ngModel)]="service.SearchFields.shipperNum"
+               class="searchInput"
+               type="text"
+               (keydown.enter)="search()"
+               placeholder="Please enter shipper number..."
+               autocomplete="off"
+               disabled><br>
+
+        <input #rNum
+               name="referenceNum"
+               id="referenceNum"
+               ng-model="referenceNum"
+               [(ngModel)]="service.SearchFields.referenceNum"
+               class="searchInput"
+               type="text"
+               (keydown.enter)="search()"
+               placeholder="Please enter reference number..."
+               autocomplete="off"
+               disabled><br>
+
+        <input #shipSerial
+               name="shipSerial"
+               id="shipSerial"
+               ng-model="shipSerial"
+               [(ngModel)]="service.SearchFields.shipSerial"
+               class="searchInput"
+               type="text"
+               (keydown.enter)="search()"
+               placeholder="Please enter customer serial number..."
+               autocomplete="off"
+               disabled><br>
+
+        <div class="refresh-btn">
+          <button class="endDatePicker inline-block-child" id="refreshListBtn" (click)="search()">Refresh</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <table id="shippingResultDetails" class='table table-striped dataTable' aria-labelledby="tableLabel1">
+    <thead>
+      <tr class="headers">
+        <th>Part Number</th>
+        <th>Location</th>
+        <th>Shift</th>
+        <th>Package Quantity</th>
+        <th>Printed By</th>
+        <th>Production Date</th>
+        <th>Date Created</th>
+        <th>Timestamp</th>
+        <th>Topre Serial</th>
+        <th>TP Code</th>
+        <th>Shipper Number</th>
+        <th>Reference Number</th>
+        <th>Customer Serial</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataItem2 of ResultsList" [ngStyle]="{'background-color': ((dataItem2.serialNumber==service.SearchFields.serialNumber && dataItem2.serialNumber != '') ||
+                                                                                 (dataItem2.shipSerial==service.SearchFields.shipSerial && dataItem2.shipSerial != '')) ? 'yellow' : 'white'}">
+        <td>{{dataItem2.partsNum}}</td>
+        <td>{{dataItem2.partLoc}}</td>
+        <td>{{dataItem2.shift}}</td>
+        <td>{{dataItem2.pkgQty}}</td>
+        <td>{{dataItem2.printedBy}}</td>
+        <td>{{dataItem2.prodDate | date: 'shortDate'}}</td>
+        <td>{{dataItem2.dateCreated | date: 'shortDate'}}</td>
+        <td>{{dataItem2.timestamp}}</td>
+        <td>{{dataItem2.serialNumber}}</td>
+        <td>{{dataItem2.tpCode}}</td>
+        <td>{{dataItem2.shipperNum}}</td>
+        <td>{{dataItem2.referenceNum}}</td>
+        <td>{{dataItem2.shipSerial}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grey-scale" id="backDrop2"></div>
+  <div class="modal" id="modalWindow">
+    <button class="exit-btn" (click)="exitModal()">Okay</button><br>
+    <div>
+      <br><span class="modal-msg" id="msg"></span>
+    </div>
+  </div>
+</body>
+
+<!--YYYY-MM-DD-->

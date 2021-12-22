@@ -1,0 +1,76 @@
+<app-nav-menu></app-nav-menu>
+<body ng-app>
+
+  <div class="white-scale" id="backDrop"></div>
+  <div id="loaderImg">
+    <img src="/assets/gg55258272.webp" alt="load bot 5000">
+    <div class="animated-gradient" id="loader">Loading...</div>
+  </div>
+
+  <div class="top">
+    <div class="title inline-block-child">
+      <h1>Sales Requirements</h1>
+    </div>
+  </div>
+
+  <input id="hideFacility" value="default" (change)="checkUrl()" hidden />
+
+  <div class="clearSearchBtn inline-block-child">
+    <button id="clearSearchBtn" (click)="clearSearch()">Clear</button>
+  </div>
+
+  <div class="searchBtn inline-block-child">
+    <button id="searchBtn" (click)="search()">Search</button>
+  </div>
+
+  <div class="search">
+    <input class="searchInput"
+           type="text"
+           id="searchInput"
+           (keydown.enter)="search()"
+           placeholder="Search..."
+           autocomplete="off">
+    <span class="tooltiptext">
+      Search by "TPCode, Part Number, Total Quantity, or Ship Date".
+    </span>
+  </div>
+
+  <table id="salesRequirements" class="table table-striped dataTable" aria-labelledby="tableLabel1">
+    <thead>
+      <tr class="headers">
+        <th>TP</th>
+        <th>PART #</th>
+        <th>DEST</th>
+        <th>DOCK CODE</th>
+        <th>REFERENCE #</th>
+        <th>RECORD TYPE</th>
+        <th>REQUIRED DATE & TIME</th>
+        <th>REQUIRED QTY</th>
+        <th>NET QTY</th>
+        <th>RELEASE #</th>
+        <th>RELEASE DATE</th>
+        <th>TOTAL SHIPPED</th>
+        <th>LATEST SHIPMENT</th>
+        <th>STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataItem of this.service.SalesInfo$">
+        <td>{{dataItem.tradingpartner}}</td>
+        <td>{{dataItem.partsnum}}</td>
+        <td>{{dataItem.destination}}</td>
+        <td>{{dataItem.dockcode}}</td>
+        <td>{{dataItem.referencenum}}</td>
+        <td>{{dataItem.recordtype}}</td>
+        <td>{{dataItem.reqdate | date: 'shortDate'}} {{dataItem.reqtime | date: 'shortTime'}}</td>
+        <td>{{dataItem.reqqty}}</td>
+        <td>{{dataItem.netqty}}</td>
+        <td>{{dataItem.releasenum}}</td>
+        <td>{{dataItem.releasedate | date: 'shortDate'}}</td>
+        <td>{{dataItem.totalshipped}}</td>
+        <td>{{dataItem.latestdateshipped | date: 'shortDate'}}</td>
+        <td>{{dataItem.asnstatus}}</td>
+      </tr>
+    </tbody>
+  </table>
+</body>

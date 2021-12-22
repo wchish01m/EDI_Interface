@@ -1,0 +1,72 @@
+
+.container {
+  width: 75%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 5px 5px 7px #b3b3b3, -5px -5px 7px #ffffff;
+  padding-top: 15px;
+}
+
+.leftSide {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  vertical-align: top;
+  display: inline-block;
+  background: #686868;
+  padding: 25px 0 0 25px;
+  height: 95%;
+  width: 50%;
+  box-shadow: 5px 5px 7px #b3b3b3, -5px -5px 7px #ffffff;
+}
+
+.rightSide {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  vertical-align: top;
+  display: inline-block;
+  background: #2587ff;
+  padding: 17px 0 0 7%;
+  height: 95%;
+  width: 50%;
+  box-shadow: 5px 5px 7px #b3b3b3;
+}
+
+.arrow {
+  padding: 25px 0 0 40%;
+}
+
+button {
+  width: 150px;
+  height: 100px;
+  border: none;
+  border-radius: 10px;
+  background: #2587ff;
+  box-shadow: 20px 20px 60px #1f73d9, -20px -20px 60px #2b9bff;
+  margin: 25px;
+}
+
+@media only screen and (max-width: 1375px) {
+
+  button {
+    height: 50px;
+    width: 100px;
+    margin: 20px 20px 0 20px;
+  }
+
+  .arrow {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  button {
+    margin: 60px 20px 0 20px;
+  }
+}

@@ -1,0 +1,141 @@
+<body>
+  <header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+      <a class="navbar-brand" [routerLink]="['/home']" queryParamsHandling="merge">EDI Interface</a>
+
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="log-buttons">
+        <ul class="log-btns">
+
+          <li class="intranet">
+            <button class="m-1 btn-primary btn-light btn-outline-primary"
+                    id="intranet"
+                    (click)="intranetButton()">
+              Intranet
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+           [ngClass]="{ show: isExpanded }">
+
+        <div class="main-nav">
+          <ul class="navbar-nav flex-grow">
+            <li class="nav-item">
+              <button [routerLink]="['/home']"
+                      queryParamsHandling="merge"
+                      class="m-1 btn-primary btn-light btn-outline-primary"
+                      id="homeBtn"
+                      Button>
+                Home
+              </button>
+            </li>
+
+            <!--<li class="facility-menu">
+              <button [routerLink]="['/']"
+                      queryParamsHandling="merge"
+                      class="m-1 btn-primary btn-light btn-outline-primary"
+                      id="facilities"
+                      Button>Facilities
+              </button>
+            </li>-->
+
+            <li class="dropdown">
+              <button class="m-1 btn-primary btn-light btn-outline-primary dropbtn" id="dropbtn" Button>Facilities</button>
+              <div class="dropdown-content">
+                <a [routerLink]="['/shipping-results']"
+                   queryParamsHandling="merge"
+                   class="m-1 btn-primary btn-light btn-outline-primary"
+                   id="al"
+                   (click)="alabamaClick()">
+                  TAC-AL
+                </a>
+
+                <a [routerLink]="['/shipping-results']"
+                   queryParamsHandling="merge"
+                   class="m-1 btn-primary btn-light btn-outline-primary"
+                   id="ms"
+                   (click)="mississippiClick()">
+                  TAC-MS
+                </a>
+
+                <a [routerLink]="['/shipping-results']"
+                   queryParamsHandling="merge"
+                   class="m-1 btn-primary btn-light btn-outline-primary"
+                   id="oh"
+                   (click)="ohioClick()">
+                  TAC-OH
+                </a>
+
+                <a [routerLink]="['/shipping-results']"
+                   queryParamsHandling="merge"
+                   class="m-1 btn-primary btn-light btn-outline-primary"
+                   id="tn"
+                   (click)="tennesseeClick()">
+                  TAC-TN
+                </a>
+              </div>
+            </li>
+
+            <li class="dropdown">
+              <button class="m-1 btn-primary btn-light btn-outline-primary dropbtn" id="dropbtn" Button>Shipping</button>
+              <div class="dropdown-content">
+                <a [routerLink]="['/shipping-results']"
+                   queryParamsHandling="merge"
+                   class="m-1 btn-primary btn-light btn-outline-primary"
+                   id="request">
+                  Results
+                </a>
+
+                <a [routerLink]="['/shipping-result-details']"
+                   queryParamsHandling="merge"
+                   class="m-1 btn-primary btn-light btn-outline-primary"
+                   id="request">
+                  Label Audit
+                </a>
+
+                <!--<a [routerLink]="['/shipping-results-history']"
+                   queryParamsHandling="merge"
+                   class="m-1 btn-primary btn-light btn-outline-primary"
+                   id="request">
+                  Results History
+                </a>-->
+              </div>
+            </li>
+
+            <!--<li class="nav-item">
+              <button class="m-1 btn-primary btn-light btn-outline-primary dropbtn" Button>Sales</button>
+              <a [routerLink]="['/sales-requirements']"
+                 queryParamsHandling="merge"
+                 class="m-1 btn-primary btn-light btn-outline-primary"
+                 id="request">
+                Requirements
+              </a>
+            </li>-->
+
+            <li class="nav-item">
+              <button [routerLink]="['/sales-requirements']"
+                      queryParamsHandling="merge"
+                      class="m-1 btn-primary btn-light btn-outline-primary"
+                      id="salesBtn"
+                      Button>
+                Sales
+              </button>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+</body>

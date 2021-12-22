@@ -1,0 +1,123 @@
+<app-nav-menu></app-nav-menu>
+<body ng-app>
+  <div class="white-scale" id="backDrop"></div>
+  <div id="loaderImg">
+    <img src="/assets/gg55258272.webp" alt="load bot 5000">
+    <div class="animated-gradient" id="loader">Loading...</div>
+  </div>
+
+  <div class="top">
+    <div class="title inline-block-child">
+      <h1>Shipping Results</h1>
+    </div>
+
+    <div class="exportBtn inline-block-child">
+      <a id="export" (click)="downloadResults()"><button id="exportBtn">Download</button></a>
+    </div>
+
+    <input id="hideFacility" value="default" (change)="checkUrl()" hidden />
+
+    <div class="endDatePicker inline-block-child">
+      <button id="refreshListBtn" (click)="refreshButton()">Refresh</button>
+    </div>
+
+    <div class="endDatePicker inline-block-child">
+      <h6>End Date</h6>
+      <input name="endDate"
+             type="text"
+             id="endDate"
+             onfocus="(this.type='date')"
+             onblur="(this.type='text')"
+             placeholder="yyyy-mm-dd">
+    </div>
+
+    <div class="startDatePicker inline-block-child">
+      <h6>Start Date</h6>
+      <input name="startDate"
+             type="text"
+             id="startDate"
+             onfocus="(this.type='date')"
+             onblur="(this.type='text')"
+             placeholder="yyyy-mm-dd">
+    </div>
+
+
+    <div class="search">
+      <input class="searchInput"
+             type="text"
+             id="searchInput"
+             (keydown.enter)="search()"
+             placeholder="Search..."
+             autocomplete="off">
+      <span class="tooltiptext">
+        Search by "TPCode, Part Number, Total Quantity, or Ship Date".
+      </span>
+    </div>
+
+    <div class="searchBtn inline-block-child">
+      <button id="searchBtn" (click)="search()">Search</button>
+    </div>
+
+    <div class="clearSearchBtn inline-block-child">
+      <button id="clearSearchBtn" (click)="clearSearch()">Clear</button>
+    </div>
+  </div>
+
+  <table id="groupedResults" class='table table-striped dataTable' aria-labelledby="tableLabel1">
+    <thead>
+      <tr class="headers">
+        <th class="hiddenHeader" id="hiddenHeader" hidden>Search Field</th>
+        <th>TPCode</th>
+        <th>Part Number</th>
+        <th>Total Quantity</th>
+        <th>Ship Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let dataItem of this.service.GroupedList">
+        <tr class="searchField" value="params.facility" (click)="displayPartInfo(dataItem.tpCode, dataItem.partsNum, dataItem.sumQty, dataItem.shipDate)" (change)="refreshButton()">
+          <td class="searchable" id="searchable" hidden>{{dataItem.tpCode}}*{{dataItem.partsNum}}*{{dataItem.sumQty}}*{{dataItem.shipDate | date:'shortDate'}}</td>
+          <td>{{dataItem.tpCode}}</td>
+          <td>{{dataItem.partsNum}}</td>
+          <td>{{dataItem.sumQty}}</td>
+          <td>{{dataItem.shipDate | date:'shortDate'}}</td>
+        </tr>
+        <tr class="partInfoTable" style="visibility:collapse" id="{{dataItem.tpCode}}_{{dataItem.partsNum}}_{{dataItem.sumQty}}_{{dataItem.shipDate | date:'yyyyMMdd'}}">
+          <td colspan="4" class="non-searchable">
+            <table class="infoTable" id="partInfo">
+              <thead>
+                <tr class="infoHeaders" id="ih">
+                  <th>TPCode</th>
+                  <th>Radley Part Number</th>
+                  <th>Part Number</th>
+                  <th>Quantity</th>
+                  <th>Shipper Number</th>
+                  <th>Ref Number</th>
+                  <th>Trading Partner</th>
+                  <th>Customer PO</th>
+                  <th>Destination</th>
+                  <th>Ship Date & Time</th>
+                  <th>ASN Date & Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="infoData" id="id" *ngFor="let dataItem2 of dataItem.shipDetails">
+                  <td class="non-searchable">{{dataItem2.tpCode}}</td>
+                  <td class="non-searchable">{{dataItem2.radleyPartNum}}</td>
+                  <td class="non-searchable">{{dataItem2.partNum}}</td>
+                  <td class="non-searchable">{{dataItem2.shipQty}}</td>
+                  <td class="non-searchable">{{dataItem2.shipperNum}}</td>
+                  <td class="non-searchable">{{dataItem2.referenceNum}}</td>
+                  <td class="non-searchable">{{dataItem2.tradingPartner}}</td>
+                  <td class="non-searchable">{{dataItem2.customerPO}}</td>
+                  <td class="non-searchable">{{dataItem2.destination}}</td>
+                  <td class="non-searchable">{{dataItem2.shipTime}}</td>
+                  <td class="non-searchable">{{dataItem2.asnTime}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+      </ng-container>
+    </tbody>
+  </table>
+</body>

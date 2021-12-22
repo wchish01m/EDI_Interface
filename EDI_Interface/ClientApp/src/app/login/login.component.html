@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="leftSide">
+    <h2>
+      Welcome to the EDI Interface!
+    </h2>
+
+    <p>
+      Please enter your credentials.
+    </p>
+
+    <div class="arrow">
+      <i class="fas fa-arrow-circle-right fa-10x"></i>
+    </div>
+  </div>
+
+  <div class="rightSide">
+    <div class="username">
+      <label>Username</label>
+      <input class="usernameInput"
+             id="userName" form-control form-control-lg
+             type="text"
+             placeholder="username"
+             autocomplete="off">
+    </div>
+
+    <div class="password">
+      <label>Password</label>
+      <input class="passwordInput"
+             id="password"
+             form-control form-control-lg type="password"
+             placeholder="password"
+             autocomplete="off"
+             (keydown.enter)="retrieveTextOnLogin()"><br><br>
+      <input type="checkbox"
+             (click)="showPassword()">Show Password
+    </div>
+
+    <div class="loginBtn">
+      <button class="btn-primary"
+              (click)="retrieveTextOnLogin()">
+        Login
+      </button>
+    </div>
+  </div>
+</div>

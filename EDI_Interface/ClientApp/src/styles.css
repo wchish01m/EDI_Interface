@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+.my-container {
+  margin: 0;
+}
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+  padding: 5px;
+}
+
+.btn-submit {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+  padding: 5px;
+}
+
+.form-group label {
+  color: black;
+}
+
+.form-group input {
+  font-weight: 500;
+}
+
+  .form-group input::placeholder {
+    color: grey;
+    font-weight: 300;
+  }
+
+thead th {
+  font-weight: 400;
+}
+
+table tbody tr:hover {
+  background-color: #fffbf2;
+  cursor: pointer;
+}
+
+.title {
+  /*text-align: center;*/
+  margin-bottom: 25px;
+}
+
+
+.msg-invalid {
+  color: red;
+}
+
+.msg-valid {
+  color: green;
+}
+
+.main-nav {
+  margin-right: 15px;
+}
