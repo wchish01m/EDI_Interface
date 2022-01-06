@@ -15,7 +15,7 @@ export class ShippingResultDetailsService {
 
   SearchFields: ShippingResultDetails = new ShippingResultDetails();
 
-  readonly baseURL = 'http://localhost:5000/api'
+  readonly baseURL = 'http://edi_api/api'
 
   /**
    * This function calls the GetDetailsBySearch function from EDI_API.

@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { OnDestroy, OnInit } from '@angular/core';
+import { HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { parse } from 'querystring';
 import { Subscription } from 'rxjs';
 import { ShippingResultsService } from '../../Shared/shipping-results.service';
 
@@ -19,6 +20,7 @@ export class ShippingResultsComponent implements OnInit, OnDestroy {
   tomorrow: string;
   facility: string;
   message: string;
+  responseBody: string;
   subscriptions: Subscription[] = [];
 
   /** shipping-results ctor */
@@ -26,8 +28,6 @@ export class ShippingResultsComponent implements OnInit, OnDestroy {
     private service: ShippingResultsService,
     private route: ActivatedRoute,
     public datepipe: DatePipe) { }
-
-  /*GroupedList: any = [];*/
 
   /**
    * This is called when the page is initially loaded in.
@@ -95,7 +95,6 @@ export class ShippingResultsComponent implements OnInit, OnDestroy {
     var sub$ = this.service.getResultsInRange(this.facility, this.paramStartDate, this.paramEndDate)
       .subscribe((data: any) => {
         this.service.GroupedList = data;
-        console.log(data);
         this.hideLoader();
       });
     this.subscriptions.push(sub$);
@@ -192,6 +191,24 @@ export class ShippingResultsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * This function is called when the "refresh" button is click,
+   * and will show this visitor list according to the new dates entered.
+   * */
+  refreshResults() {
+    var newStart;
+    var newEnd;
+
+    newStart = (document.getElementById('startDate') as HTMLInputElement).value;
+    newEnd = (document.getElementById('endDate') as HTMLInputElement).value;
+    
+    var sub2$ = this.service.getResultsInRange(this.facility, newStart, newEnd)
+      .subscribe((data: any) => {
+        this.service.GroupedList = data;
+      });
+    this.subscriptions.push(sub2$);
+  }
+
+  /**
    * This function ensures that the date does not go out of bounds
    * for the possible number of days in any month.
    * */
@@ -200,8 +217,10 @@ export class ShippingResultsComponent implements OnInit, OnDestroy {
     var month = date.getMonth() + 2;
     var year = date.getFullYear();
     var ldpm = new Date();
+
     ldpm.setDate(1);
     ldpm.setHours(-1);
+
     var lastMonth = ldpm.getMonth() + 1;
     var lastDay = ldpm.getDate();
     var dateArrayStart = this.paramStartDate.split("-");
@@ -330,35 +349,83 @@ export class ShippingResultsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Creates an excel file and downloads it.
+   * Will build the excel file for the current results
+   * as well as download the excel file after building is complete.
    * */
-  downloadResults() {
+  buildFile() {
     var newStart = (document.getElementById('startDate') as HTMLInputElement).value;
     var newEnd = (document.getElementById('endDate') as HTMLInputElement).value;
-    var db = document.getElementById('export') as HTMLAnchorElement;
 
-    this.showLoader();
-    var export$ = this.service.download(this.facility, newStart, newEnd)
+    var build$ = this.service.buildFile(this.facility, newStart, newEnd)
       .subscribe((data: any) => {
-        this.service.GroupedList = data;
+        this.responseBody = data;
+        this.enableDownloadButton();
       });
 
-    export$.unsubscribe();
+    this.subscriptions.push(build$);
 
-    db.href = "http://localhost:5000/api/ShippingResults/Download/" + this.facility + '/' + newStart + '/' + newEnd;
+    this.showModal("YOUR FILE IS BEING BUILT. DEPENDING ON THE SIZE OF THE FILE THIS COULD TAKE A WHILE. THE DOWNLOAD BUTTON WILL ENABLE WHEN COMPLETE...");
+  }
 
-    this.refreshButton();
+  enableDownloadButton() {
+    var downloadBtn = document.getElementById('downloadBtn') as HTMLButtonElement;
+    downloadBtn.disabled = false;
+    downloadBtn.style.backgroundColor = "#2587ff";
   }
 
   /**
-   * This function will delete the excel file from the API
-   * project.
+   * This function will download the excel file after it is done
+   * being built.
    * */
-  deleteFile() {
-    var delete$ = this.service.delete().subscribe((data: any) => {
-      console.log("DELETING FILE...");
-    });
-    this.subscriptions.push(delete$);
+  download() {
+    var downloadBtn = document.getElementById('downloadBtn') as HTMLButtonElement;
+    var db = document.getElementById('export') as HTMLAnchorElement;
+    var re = "File_Export\\";
+
+    var download$ = this.service.download(this.responseBody)
+      .subscribe((data: any) => {
+        console.log("DOWNLOADING FILE...");
+      })
+
+    download$.unsubscribe();
+
+    /*db.href = "http://localhost:5000/api/ShippingResults/Download/" + this.responseBody.replace(re, "File_Export%5C");*/
+    db.href = "http://edi_api/api/ShippingResults/Download/" + this.responseBody.replace(re, "File_Export%5C");
+
+    downloadBtn.disabled = true;
+    downloadBtn.style.backgroundColor = "#808080";
+
+    this.refreshResults();
+    this.exitModal();
+  }
+
+  /**
+   * This function adds the hideModal class to the modalWindow
+   * and backDrop when the user exits the modal.
+   * */
+  exitModal() {
+    let m = document.querySelector('#modalWindow');
+    let b = document.querySelector('#backDrop2');
+    
+    m.classList.add("hideModal");
+    b.classList.add("hideModal");
+  }
+
+  /**
+   * This functoin will remove the hideModal class from
+   * the modalWindow and backDrop and set the display from
+   * none to flex.
+   * */
+  showModal(message) {
+    let m = document.querySelector('#modalWindow');
+    let b = document.querySelector('#backDrop2');
+    let msg = (document.getElementById('msg') as HTMLInputElement).textContent = message;
+
+    m.classList.remove("hideModal");
+    b.classList.remove("hideModal");
+
+    document.getElementById("backDrop2").style.display = "flex";
+    document.getElementById("modalWindow").style.display = "flex";
   }
 
   /**
@@ -366,11 +433,6 @@ export class ShippingResultsComponent implements OnInit, OnDestroy {
    * and unsubscribed from all subscriptions.
    * */
   ngOnDestroy() {
-    console.log("DESTROYING...");
-
-    // Clean up
-    this.deleteFile();
-
     // Unsubscribe from all subscriptions
     this.subscriptions.forEach((subscription) =>
       subscription.unsubscribe());

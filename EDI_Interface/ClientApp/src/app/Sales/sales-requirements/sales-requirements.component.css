@@ -20,8 +20,8 @@ body {
 #loaderImg {
   position: absolute;
   display: none;
-  left: 42.5%;
-  top: 30%;
+  left: 40%;
+  top: 25%;
   z-index: 12000;
   animation: show .2s;
   -webkit-animation: show .2s;
@@ -165,10 +165,9 @@ body {
   font-size: 16px;
 }
 
-/*Animations*/
 .animated-gradient {
   position: relative;
-  z-index: 10000;
+  z-index: 10;
   width: 300px;
   color: white;
   border-radius: 10px;

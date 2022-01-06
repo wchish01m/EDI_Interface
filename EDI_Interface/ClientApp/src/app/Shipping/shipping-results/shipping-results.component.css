@@ -163,16 +163,6 @@ button {
   animation-timing-function: linear;
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: -200% 0;
-  }
-}
-
 .white-scale {
   z-index: 11000;
   position: absolute;
@@ -180,7 +170,7 @@ button {
   left: 0px;
   width: 100%;
   height: 100vh;
-  background: rgb(255 255 255 / 0.70);
+  background: rgb(255 255 255 / 0.80);
   display: none;
   justify-content: center;
   align-items: center;
@@ -191,8 +181,8 @@ button {
 #loaderImg {
   position: absolute;
   display: none;
-  left: 42.5%;
-  top: 30%;
+  left: 40%;
+  top: 25%;
   z-index: 12000;
   animation: show .2s;
   -webkit-animation: show .2s;
@@ -212,9 +202,33 @@ button {
   transform: scale(0);
 }
 
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+.grey-scale {
+  z-index: 11000;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  animation: show .2s;
+  -webkit-animation: show .2s;
+}
+
 .modal {
   z-index: 12000;
-  padding: 15px;
+  padding:  0 15px 15px 15px;
   width: 30%;
   height: 25%;
   position: absolute;
@@ -227,6 +241,26 @@ button {
   -webkit-animation: show .2s;
 }
 
+.exit-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 40px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  border-radius: 5px;
+  background-color: #808080;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/*****************************
+**********ANIMATIONS**********
+******************************/
 @keyframes hide {
   from {
     z-index: 12000;
@@ -275,13 +309,14 @@ button {
   }
 }
 
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
+@keyframes gradient {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 @-webkit-keyframes animatebottom {

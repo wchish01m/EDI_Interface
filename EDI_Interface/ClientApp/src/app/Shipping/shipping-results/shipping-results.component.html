@@ -2,9 +2,11 @@
 <body ng-app>
   <div class="white-scale" id="backDrop"></div>
   <div id="loaderImg">
-    <img src="/assets/gg55258272.webp" alt="load bot 5000">
+    <img src="/assets/gg55258272.jpg" alt="load bot 5000">
     <div class="animated-gradient" id="loader">Loading...</div>
   </div>
+
+  <a href="D:\Projects\EDI_Portal\EDI_API\EDI_API\File_Export" id="hiddenPath" hidden></a>
 
   <div class="top">
     <div class="title inline-block-child">
@@ -12,7 +14,7 @@
     </div>
 
     <div class="exportBtn inline-block-child">
-      <a id="export" (click)="downloadResults()"><button id="exportBtn">Download</button></a>
+      <button id="exportBtn" (click)="buildFile()">Build File</button>
     </div>
 
     <input id="hideFacility" value="default" (change)="checkUrl()" hidden />
@@ -120,4 +122,15 @@
       </ng-container>
     </tbody>
   </table>
+
+  <div class="grey-scale" id="backDrop2"></div>
+  <div class="modal" id="modalWindow">
+    <div class="downloadBtn inline-block-child">
+      <a id="export" (click)="download()"><button class="exit-btn" id="downloadBtn" disabled>Download</button></a>
+    </div>
+    <div>
+      <br><span class="modal-msg" id="msg"></span>
+    </div>
+  </div>
+
 </body>

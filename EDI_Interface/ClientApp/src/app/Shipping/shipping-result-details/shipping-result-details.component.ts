@@ -118,6 +118,7 @@ export class ShippingResultDetailsComponent implements OnInit, OnDestroy {
    * Calls the getDetailsByShipperNum function in the service class.
    * */
   search() {
+    // Input fields
     var searchPn = (document.getElementById('searchPartNum') as HTMLInputElement).value;
     var searchTpCode = (document.getElementById('tpCode') as HTMLInputElement).value;
     var searchShipperNum = (document.getElementById('shipperNum') as HTMLInputElement).value;
@@ -127,14 +128,13 @@ export class ShippingResultDetailsComponent implements OnInit, OnDestroy {
     var newStart = (document.getElementById('startDate') as HTMLInputElement).value;
     var newEnd = (document.getElementById('endDate') as HTMLInputElement).value;
 
+    // Message to display if not search fields are entered
     var msg = "Please enter at least one search field. You may search by production and/or shipping information.";
-    var dateMsg = "You must select both a start and end date."
 
-    if (searchPn == "" && searchTpCode == "" && searchShipperNum == "" && searchReferenceNum == "" && searchCustSerial == "" && searchTopSerial == "" && newStart == "" && newEnd == "") {
+    // If not search fields have a value display modal message
+    // Otherwise send a call the service class with proper variables.
+    if (searchPn === "" && searchTpCode === "" && searchShipperNum === "" && searchReferenceNum === "" && searchCustSerial === "" && searchTopSerial === "" && newStart === "" && newEnd === "") {
       this.showModal(msg);
-    }
-    else if ((newStart != "" && newEnd == "") || (newEnd != "" && newStart == "")) {
-      this.showModal(dateMsg);
     }
     else {
       this.showLoader();
@@ -143,10 +143,25 @@ export class ShippingResultDetailsComponent implements OnInit, OnDestroy {
           this.ResultsList = data;
           this.hideLoader();
         });
+      this.subscriptions.push(sub$);
     }
-    this.subscriptions.push(sub$);
 
+    // Set isLoaded to true
     this.isLoaded = true;
+    // Reset form
+    this.resetForm();
+  }
+
+  /**
+   * Checks the value of the input field called from.
+   * If it is not blank or undefined it calls the search function.
+   * Otherwise it does nothing.
+   * @param searchVal
+   */
+  callSearch(searchVal: any) {
+    if (searchVal.value !== '' && searchVal.value !== undefined) {
+      this.search();
+    }
   }
 
   /**
@@ -290,6 +305,11 @@ export class ShippingResultDetailsComponent implements OnInit, OnDestroy {
       searchReferenceNum.disabled = true;
       searchCustSerial.disabled = true;
     }
+  }
+
+  resetForm() {
+    var searchDiv = document.getElementById('searchForm') as HTMLFormElement;
+    searchDiv.reset();
   }
 
   /**

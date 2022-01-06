@@ -12,7 +12,8 @@ export class ShippingResultsService {
 
   GroupedList: Observable<any[]>;
 
-  readonly baseURL = 'http://localhost:5000/api';
+  /*readonly baseURL = 'http://localhost:5000/api';*/
+  readonly baseURL = 'http://edi_api/api';
 
   /**
    * This functoin calls the GetResultsInRange function
@@ -25,12 +26,18 @@ export class ShippingResultsService {
     return this.http.get<any>(this.baseURL + '/ShippingResults/GetByRange/' + facility + '/' + startDate + '/' + endDate);
   }
 
-  download(facility: string, startDate: string, endDate: string) {
-    console.log(this.baseURL + '/Download/' + facility + '/' + startDate + '/' + endDate);
-    return this.http.get(this.baseURL + '/Download/' + facility + '/' + startDate + '/' + endDate, {});
+  /**
+   * This function calls the Download function
+   * in the ShippingResultsController in EDI_API
+   * @param facility
+   * @param startDate
+   * @param endDate
+   */
+  buildFile(facility: string, startDate: string, endDate: string) {
+    return this.http.get(this.baseURL + '/ShippingResults/BuildFile/' + facility + '/' + startDate + '/' + endDate, { responseType: 'text' });
   }
 
-  delete() {
-    return this.http.get(this.baseURL + '/ShippingResults/DeleteFile');
+  download(filePath: string) {
+    return this.http.get(this.baseURL + '/ShippingResults/Download/' + filePath, {});
   }
 }

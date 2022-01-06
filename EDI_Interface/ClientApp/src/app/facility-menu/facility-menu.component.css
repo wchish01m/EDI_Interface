@@ -9,8 +9,8 @@
   right: 0;
   margin: auto;
   border-radius: 10px;
-  background: linear-gradient(145deg, #e6e6e6, #ffffff);
-  box-shadow: 5px 5px 7px #b3b3b3, -5px -5px 7px #ffffff;
+  background: #ffffff;
+  box-shadow: 5px 5px 14px #666666, -5px -5px 14px #ffffff;
   padding-top: 15px;
 }
 
@@ -48,7 +48,7 @@ button {
   border: none;
   border-radius: 10px;
   background: #2587ff;
-  box-shadow: 20px 20px 60px #1f73d9, -20px -20px 60px #2b9bff;
+  box-shadow: 5px 5px 5px #0f3666, -5px -5px 5px #3bd8ff;
   margin: 25px;
 }
 

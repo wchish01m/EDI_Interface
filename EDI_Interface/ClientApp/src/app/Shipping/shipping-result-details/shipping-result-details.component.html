@@ -2,7 +2,7 @@
 <body ng-app="MyApp" ng-controller="myCtrl">
   <div class="white-scale" id="backDrop1"></div>
   <div id="loaderImg">
-    <img src="/assets/gg55258272.webp" alt="load bot 5000">
+    <img src="/assets/gg55258272.jpg" alt="load bot 5000">
     <div class="animated-gradient" id="loader">
       Loading...
     </div>
@@ -16,18 +16,18 @@
 
   <input id="hideFacility" value="default" (change)="checkUrl()" hidden />
 
-  <div class="searchDiv">
+  <form class="searchDiv" id="searchForm">
     <div>
       <input class="searchInput"
              type="text"
              id="searchPartNum"
-             (keydown.enter)="search()"
+             (blur)="callSearch(this)"
              placeholder="Please enter part number..."
              autocomplete="off"><br>
     </div>
 
     <div class="productionSearch search">
-      <form class="prodSearchForm">
+      <div class="prodSearchForm">
 
         <input type="checkbox"
                id="production"
@@ -43,7 +43,7 @@
                [(ngModel)]="service.SearchFields.serialNumber"
                class="searchInput"
                type="text"
-               (keydown.enter)="search()"
+               (blur)="callSearch(this)"
                placeholder="Please enter topre serial..."
                autocomplete="off"
                disabled><br>
@@ -56,7 +56,7 @@
                type="text"
                class="startDatePicker inline-block-child dateSelector"
                onfocus="(this.type='date')"
-               onblur="(this.type='text')"
+               (blur)="(this.type='text')"
                placeholder="Please select a starting date..."
                disabled><br>
 
@@ -65,14 +65,14 @@
                id="endDate"
                class="endDatePicker inline-block-child dateSelector"
                onfocus="(this.type='date')"
-               onblur="(this.type='text')"
+               (blur)="(this.type='text')"
                placeholder="Please select an ending date..."
                disabled>
-      </form>
+      </div>
     </div>
 
     <div class="shippingSearch search">
-      <form class="shippingSearchForm">
+      <div class="shippingSearchForm">
         <input type="checkbox" id="shipping" name="shippingSearch" value="shippingSearch" (click)="enableTextInput()">
         <label for="shipping">&nbsp;&nbsp;Shipping</label>
 
@@ -83,7 +83,7 @@
                [(ngModel)]="tpCode"
                class="searchInput"
                type="text"
-               (keydown.enter)="search()"
+               (blur)="callSearch(this)"
                placeholder="Please enter trading partner code..."
                autocomplete="off"
                disabled><br>
@@ -95,7 +95,7 @@
                [(ngModel)]="service.SearchFields.shipperNum"
                class="searchInput"
                type="text"
-               (keydown.enter)="search()"
+               (blur)="callSearch(this)"
                placeholder="Please enter shipper number..."
                autocomplete="off"
                disabled><br>
@@ -107,7 +107,7 @@
                [(ngModel)]="service.SearchFields.referenceNum"
                class="searchInput"
                type="text"
-               (keydown.enter)="search()"
+               (blur)="callSearch(this)"
                placeholder="Please enter reference number..."
                autocomplete="off"
                disabled><br>
@@ -119,7 +119,7 @@
                [(ngModel)]="service.SearchFields.shipSerial"
                class="searchInput"
                type="text"
-               (keydown.enter)="search()"
+               (blur)="callSearch(this)"
                placeholder="Please enter customer serial number..."
                autocomplete="off"
                disabled><br>
@@ -127,9 +127,9 @@
         <div class="refresh-btn">
           <button class="endDatePicker inline-block-child" id="refreshListBtn" (click)="search()">Refresh</button>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
+  </form>
 
   <table id="shippingResultDetails" class='table table-striped dataTable' aria-labelledby="tableLabel1">
     <thead>

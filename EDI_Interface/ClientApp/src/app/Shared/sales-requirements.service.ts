@@ -10,7 +10,7 @@ export class SalesRequirementsService {
 
   SalesInfo$: Observable<any[]>;
 
-  readonly baseURL = 'http://localhost:5000/api'
+  readonly baseURL = 'http://edi_api/api'
 
   /**
    * This function calls the GetSalesInfo function in EDI_API.
