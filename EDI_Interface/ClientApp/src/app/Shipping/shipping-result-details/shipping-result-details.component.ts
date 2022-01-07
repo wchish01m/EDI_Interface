@@ -1,4 +1,4 @@
-import { OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -148,8 +148,6 @@ export class ShippingResultDetailsComponent implements OnInit, OnDestroy {
 
     // Set isLoaded to true
     this.isLoaded = true;
-    // Reset form
-    this.resetForm();
   }
 
   /**
@@ -160,6 +158,7 @@ export class ShippingResultDetailsComponent implements OnInit, OnDestroy {
    */
   callSearch(searchVal: any) {
     if (searchVal.value !== '' && searchVal.value !== undefined) {
+      alert(searchVal.value);
       this.search();
     }
   }
@@ -305,11 +304,6 @@ export class ShippingResultDetailsComponent implements OnInit, OnDestroy {
       searchReferenceNum.disabled = true;
       searchCustSerial.disabled = true;
     }
-  }
-
-  resetForm() {
-    var searchDiv = document.getElementById('searchForm') as HTMLFormElement;
-    searchDiv.reset();
   }
 
   /**

@@ -34,6 +34,7 @@
     <None Remove="ClientApp\src\app\Shared\grouped-parts.model.ts" />
     <None Remove="ClientApp\src\app\Shared\sales-requirements.model.ts" />
     <None Remove="ClientApp\src\app\Shared\sales-requirements.service.ts" />
+    <None Remove="ClientApp\src\app\Shared\setURL.service.ts" />
     <None Remove="ClientApp\src\app\Shared\shipping-details.model.ts" />
     <None Remove="ClientApp\src\app\Shared\shipping-result-details.model.ts" />
     <None Remove="ClientApp\src\app\Shared\shipping-results.model.ts" />

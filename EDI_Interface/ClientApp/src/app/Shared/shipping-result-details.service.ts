@@ -1,21 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SetURLService } from './setURL.service';
 import { ShippingResultDetails } from './shipping-result-details.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShippingResultDetailsService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private service: SetURLService) { }
 
   static ngInjectableDef = undefined;
-
   ResultsList: Observable<any[]>;
-
   SearchFields: ShippingResultDetails = new ShippingResultDetails();
-
-  readonly baseURL = 'http://edi_api/api'
 
   /**
    * This function calls the GetDetailsBySearch function from EDI_API.
@@ -33,7 +31,7 @@ export class ShippingResultDetailsService {
    */
   getDetailsBySearch(facility?: string, partNum?: string, tpCode?: string, shipperNum?: string, referenceNum?: string, custSerial?: string,
     topSerial?: string, startDate?: string, endDate?: string): Observable<any> {
-    return this.http.get<any>(this.baseURL + '/ShippingResultDetails/GetDetailsBySearch?facility=' + facility + "&partNum=" + partNum + "&tpCode=" + tpCode + "&shipperNum=" + shipperNum
+    return this.http.get<any>(this.service.getURL() + '/ShippingResultDetails/GetDetailsBySearch?facility=' + facility + "&partNum=" + partNum + "&tpCode=" + tpCode + "&shipperNum=" + shipperNum
       + "&referenceNum=" + referenceNum + "&custSerial=" + custSerial + "&topSerial=" + topSerial + "&startDate=" + startDate + "&endDate=" + endDate);
   }
 }

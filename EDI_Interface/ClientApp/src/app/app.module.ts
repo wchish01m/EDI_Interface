@@ -14,6 +14,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
 import { FacilityMenuComponent } from './facility-menu/facility-menu.component';
 import { SalesRequirementsComponent } from './Sales/sales-requirements/sales-requirements.component';
 import { DatePipe } from '@angular/common';
+import { SetURLService } from './Shared/setURL.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { DatePipe } from '@angular/common';
       { path: 'sales-requirements', component: SalesRequirementsComponent },
     ])
   ],
-  providers: [ShippingResultsService, DatePipe],
+  providers: [ShippingResultsService, DatePipe, SetURLService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

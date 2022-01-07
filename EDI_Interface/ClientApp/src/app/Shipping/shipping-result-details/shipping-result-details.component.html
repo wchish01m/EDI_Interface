@@ -21,7 +21,6 @@
       <input class="searchInput"
              type="text"
              id="searchPartNum"
-             (blur)="callSearch(this)"
              placeholder="Please enter part number..."
              autocomplete="off"><br>
     </div>
@@ -43,7 +42,6 @@
                [(ngModel)]="service.SearchFields.serialNumber"
                class="searchInput"
                type="text"
-               (blur)="callSearch(this)"
                placeholder="Please enter topre serial..."
                autocomplete="off"
                disabled><br>
@@ -83,7 +81,6 @@
                [(ngModel)]="tpCode"
                class="searchInput"
                type="text"
-               (blur)="callSearch(this)"
                placeholder="Please enter trading partner code..."
                autocomplete="off"
                disabled><br>
@@ -95,7 +92,6 @@
                [(ngModel)]="service.SearchFields.shipperNum"
                class="searchInput"
                type="text"
-               (blur)="callSearch(this)"
                placeholder="Please enter shipper number..."
                autocomplete="off"
                disabled><br>
@@ -107,7 +103,6 @@
                [(ngModel)]="service.SearchFields.referenceNum"
                class="searchInput"
                type="text"
-               (blur)="callSearch(this)"
                placeholder="Please enter reference number..."
                autocomplete="off"
                disabled><br>
@@ -119,7 +114,6 @@
                [(ngModel)]="service.SearchFields.shipSerial"
                class="searchInput"
                type="text"
-               (blur)="callSearch(this)"
                placeholder="Please enter customer serial number..."
                autocomplete="off"
                disabled><br>
