@@ -16,8 +16,6 @@ export class SetURLService {
    * the proper URL for API calls.
    * */
   getURL(): string {
-    console.log(this.siteURL);
-
     if (this.siteURL.includes("edi")) {
       this.baseURL = 'http://edi_api/api';
     }

@@ -17,7 +17,6 @@ export class SalesRequirementsService {
    * @param facility
    */
   getSalesInfo(facility: string): Observable<any> {
-    console.log(this.service.getURL());
     return this.http.get<any>(this.service.getURL() + '/SalesRequirements/GetSalesInfo/' + facility);
   }
 }
